@@ -1,12 +1,14 @@
 package Main;
 import Model.Sudoku;
+import View.FormSudoku;
 
 public class Main {
 
    
     public static void main(String[] args) {
-        Sudoku sudoku = new Sudoku();
-        sudoku.showSudoku();
+       
+        FormSudoku sudoku = new FormSudoku();
+        sudoku.setVisible(true);
     }
     
 }

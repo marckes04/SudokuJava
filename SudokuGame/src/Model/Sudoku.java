@@ -10,18 +10,18 @@ public Sudoku(){
     int sudo [][] ={
         {0,0,0,6,0,0,0,0,0},    
         {0,0,0,0,0,3,0,0,0}, 
-        {0,1,0,0,0,0,0,0,0}, 
-        {0,0,0,0,0,0,8,0,0}, 
-        {7,0,0,0,0,0,0,0,0}, 
+        {0,1,0,0,0,0,8,0,0}, 
+        {0,0,0,0,0,0,0,0,0}, 
+        {0,0,0,0,0,0,0,0,0}, 
         {0,0,0,0,0,0,0,8,0}, 
-        {0,0,7,0,0,0,0,0,0}, 
+        {0,0,0,0,0,0,0,0,0}, 
         {0,0,0,0,0,0,0,0,8}, 
         {7,0,0,0,0,0,0,0,0},
     };
      sudoku = sudo;
     }
     
-public void relsoveSudoku(){
+public boolean resolveSudoku(){
     for(int i = 0; i < sudoku.length; i++)
     {
         for(int j = 0; j < sudoku[0].length;j++)
@@ -32,11 +32,13 @@ public void relsoveSudoku(){
                     if(validateRow(i,val) && validateColumn(j,val) && validateSquare(i,j,val))
                     {
                         sudoku[i][j] = val;
+                        if(resolveSudoku()) return true;
+                        sudoku[i][j]=0;
                     }
-                }
+                } return false;
             }
         }
-    }
+    } return true;
 }
 
 public boolean validateSquare(int i , int j, int val)
@@ -91,7 +93,7 @@ public boolean validateColumn(int j, int val)
 
 public void showSudoku()
 {
-  relsoveSudoku();
+  resolveSudoku();
         for (int i = 0; i < sudoku.length; i++) {
             for (int j = 0; j < sudoku[0].length; j++) {
                 System.out.print(sudoku[i][j]);
